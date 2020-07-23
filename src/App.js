@@ -15,7 +15,6 @@ import WorkFlow from './components/WorkFlow/WorkFlow';
 import AirFlow from './components/AirFlow/AirFlow';
 import SourceDetailsList from './components/SourceDetailsList/SourceDetailsList';
 import ETLTargets from './components/ETLTarget/ETLTargets';
-import FormSubmit from './components/FormSubmit/FormSubmit';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -44,7 +43,6 @@ const App = () => {
             component={SourceDetailsList}
           />
           <Route path='/etl-targets' component={ETLTargets} />
-          {/* <Route path='/form-submit' component={FormSubmit} /> */}
         </Switch>
       </LayoutContextProvider>
     </Router>

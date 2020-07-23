@@ -11,4 +11,8 @@ const data = [
   },
 ];
 
-console.log(data);
+const out = data.map((d) => {
+  return { start: d.start, end: d.end };
+});
+
+console.log(out);

@@ -21,6 +21,7 @@ const LayoutContextProvider = (props) => {
   });
   const [uniquecols, setUniqueCols] = useState('');
   const [cols, setCols] = useState([]);
+
   const [spark, setSpark] = useState({
     principal: '',
     jarlocation: '',
@@ -78,20 +79,35 @@ const LayoutContextProvider = (props) => {
             },
             cdc,
             uniquecols,
-            cols,
+            cols: cols.map((p) => {
+              return {
+                maxlength: p.maxlength,
+                datatype: p.datatype,
+                columnname: p.columnname,
+                exceptedvalues: p.exceptedvalues,
+              };
+            }),
           },
         },
-        processingParameters,
+        processingParameters: processingParameters.map((p) => {
+          return { value: p.value, attribute: p.attribute };
+        }),
         configparameters: {
           spark,
           watcher: {
             schedule,
             options: optionsVal,
           },
-          workflow,
+          workflow: workflow.map((p) => {
+            return { start: p.start, end: p.end };
+          }),
           airflow,
-          sourcedetails,
-          etltarget,
+          sourcedetails: sourcedetails.map((p) => {
+            return { value: p.value, attribute: p.attribute };
+          }),
+          etltarget: etltarget.map((p) => {
+            return { value: p.value, attribute: p.attribute };
+          }),
         },
       },
     });

@@ -9,7 +9,6 @@ const LayoutMain = () => {
     setClientName,
     setEmails,
     setLayoutName,
-    handleSubmit,
   } = useContext(LayoutContext);
 
   return (
@@ -18,7 +17,7 @@ const LayoutMain = () => {
         <div className='row'>
           <div className='col-md-6 mx-auto m-5'>
             <h4 className='mb-4'>Request Level Parameters</h4>
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className='form-group'>
                 <label htmlFor='clientname'>Client Name</label>
                 <input
@@ -49,12 +48,6 @@ const LayoutMain = () => {
                   onChange={(event) => setLayoutName(event.target.value)}
                 />
               </div>
-              <button
-                className='btn btn-primary mx-auto text-center'
-                type='submit'
-              >
-                click
-              </button>
             </form>
           </div>
         </div>

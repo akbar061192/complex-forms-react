@@ -71,7 +71,7 @@ const ETLTargets = () => {
             {json && (
               <textarea
                 disabled
-                className='form-control'
+                className='form-control mx-auto'
                 defaultValue={data}
                 style={{ width: '90%', height: '40vh', textAlign: 'center' }}
               ></textarea>

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import SingleParameter from './SingleParameter';
 import { LayoutContext } from '../../context/LayoutContext';
+import { Link } from 'react-router-dom';
 
 const ProcessingParameters = () => {
   const {
@@ -15,8 +16,8 @@ const ProcessingParameters = () => {
     <>
       <div className='container'>
         <div className='row mx-auto'>
-          <div className='col-md-12 mx-auto'>
-            <h4 className='mb-4 text-center'>Processing Level Parameters</h4>
+          <div className='col-md-12 mx-auto mt-5'>
+            <h4 className='mb-3 text-center'>Processing Level Parameters</h4>
           </div>
           <button
             className='btn btn-primary mx-auto my-3'
@@ -50,6 +51,18 @@ const ProcessingParameters = () => {
               </tbody>
             </table>
             <hr />
+            <div className=' d-flex justify-content-between '>
+              <Link to='/cols'>
+                <button type='button' className='btn btn-dark mt-2'>
+                  Back
+                </button>
+              </Link>
+              <Link to='/spark-param'>
+                <button type='button' className='btn btn-dark mt-2'>
+                  Next
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

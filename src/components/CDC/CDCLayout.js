@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { LayoutContext } from '../../context/LayoutContext';
+import { Link } from 'react-router-dom';
 
 const CDCLayout = () => {
   const { cdc, setCdc, uniquecols, setUniqueCols } = useContext(LayoutContext);
@@ -126,6 +127,18 @@ const CDCLayout = () => {
                   />
                 </div>
               </form>
+              <div className=' d-flex justify-content-between '>
+                <Link to='/source-details'>
+                  <button type='button' className='btn btn-dark mt-2'>
+                    Back
+                  </button>
+                </Link>
+                <Link to='/cols'>
+                  <button type='button' className='btn btn-dark mt-2'>
+                    Next
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

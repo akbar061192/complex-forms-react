@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import SingleSourceDetail from './SingleSourceDetail';
 import { LayoutContext } from '../../context/LayoutContext';
+import { Link } from 'react-router-dom';
 
 const SourceDetailsList = () => {
   const {
@@ -14,8 +15,8 @@ const SourceDetailsList = () => {
     <>
       <div className='container'>
         <div className='row mx-auto'>
-          <div className='col-md-12 mx-auto'>
-            <h4 className='mb-4 text-center'>Source Details</h4>
+          <div className='col-md-12 mx-auto mt-5'>
+            <h4 className='mb-3 text-center'>Source Details</h4>
           </div>
           <button
             className='btn btn-primary mx-auto my-3'
@@ -47,6 +48,18 @@ const SourceDetailsList = () => {
               </tbody>
             </table>
             <hr />
+            <div className=' d-flex justify-content-between '>
+              <Link to='/airflow'>
+                <button type='button' className='btn btn-dark my-4'>
+                  Back
+                </button>
+              </Link>
+              <Link to='/etl-targets'>
+                <button type='button' className='btn btn-dark my-4'>
+                  Next
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

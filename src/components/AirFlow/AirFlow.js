@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { LayoutContext } from '../../context/LayoutContext';
+import { Link } from 'react-router-dom';
 
 const AirFlow = () => {
   const { airflow, setAirFlow } = useContext(LayoutContext);
@@ -84,6 +85,18 @@ const AirFlow = () => {
                   />
                 </div>
               </form>
+              <div className=' d-flex justify-content-between '>
+                <Link to='/workflow'>
+                  <button type='button' className='btn btn-dark my-4'>
+                    Back
+                  </button>
+                </Link>
+                <Link to='/source-details-list'>
+                  <button type='button' className='btn btn-dark my-4'>
+                    Next
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

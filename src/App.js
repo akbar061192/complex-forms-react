@@ -17,23 +17,37 @@ import SourceDetailsList from './components/SourceDetailsList/SourceDetailsList'
 import ETLTargets from './components/ETLTarget/ETLTargets';
 import FormSubmit from './components/FormSubmit/FormSubmit';
 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 const App = () => {
   return (
-    <LayoutContextProvider>
-      <Navbar />
-      <LayoutMain />
-      <SourceDetails />
-      <CDCLayout />
-      <Cols />
-      <ProcessingParameters />
-      <SparkParam />
-      <Options />
-      <WorkFlow />
-      <AirFlow />
-      <SourceDetailsList />
-      <ETLTargets />
-      <FormSubmit />
-    </LayoutContextProvider>
+    <Router>
+      <LayoutContextProvider>
+        <Navbar />
+        <Switch>
+          <Route exact path='/' component={LayoutMain} />
+          <Route exact path='/source-details' component={SourceDetails} />
+          <Route exact path='/cdc-layout' component={CDCLayout} />
+          <Route exact path='/cols' component={Cols} />
+          <Route
+            exact
+            path='/processing-params'
+            component={ProcessingParameters}
+          />
+          <Route exact path='/spark-param' component={SparkParam} />
+          <Route exact path='/options' component={Options} />
+          <Route exact path='/workflow' component={WorkFlow} />
+          <Route exact path='/airflow' component={AirFlow} />
+          <Route
+            exact
+            path='/source-details-list'
+            component={SourceDetailsList}
+          />
+          <Route path='/etl-targets' component={ETLTargets} />
+          {/* <Route path='/form-submit' component={FormSubmit} /> */}
+        </Switch>
+      </LayoutContextProvider>
+    </Router>
   );
 };
 

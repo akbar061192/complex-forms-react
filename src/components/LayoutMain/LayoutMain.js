@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { LayoutContext } from '../../context/LayoutContext';
+import { Link } from 'react-router-dom';
 
 const LayoutMain = () => {
   const {
@@ -12,11 +13,11 @@ const LayoutMain = () => {
   } = useContext(LayoutContext);
 
   return (
-    <div>
+    <>
       <div className='container'>
         <div className='row'>
           <div className='col-md-6 mx-auto m-5'>
-            <h4 className='mb-4'>Request Level Parameters</h4>
+            <h4 className='mb-3 text-center'>Main Parameters</h4>
             <form>
               <div className='form-group'>
                 <label htmlFor='clientname'>Client Name</label>
@@ -49,10 +50,17 @@ const LayoutMain = () => {
                 />
               </div>
             </form>
+            <div className=' d-flex justify-content-end '>
+              <Link to='/source-details'>
+                <button type='button' className='btn btn-dark mt-2'>
+                  Next
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

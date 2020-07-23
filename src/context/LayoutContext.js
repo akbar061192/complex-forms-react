@@ -59,41 +59,50 @@ const LayoutContextProvider = (props) => {
   });
   const [sourcedetails, setSourceDetails] = useState([]);
   const [etltarget, setEtlTarget] = useState([]);
+  const [json, setJson] = useState(false);
+  const [data, setData] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleVerify = (event) => {
     event.preventDefault();
-    console.log(
-      JSON.stringify({
-        clientName,
-        emails,
-        layoutName,
-        layoutinfo: {
-          tables: {
-            problem_list: {
-              sourcedetails: {
-                sourcetype,
-                sourceconnection,
-              },
-              cdc,
-              uniquecols,
-              cols,
+    setJson(true);
+    const output = JSON.stringify({
+      clientName,
+      emails,
+      layoutName,
+      layoutinfo: {
+        tables: {
+          problem_list: {
+            sourcedetails: {
+              sourcetype,
+              sourceconnection,
             },
-          },
-          processingParameters,
-          configparameters: {
-            spark,
-            watcher: {
-              schedule,
-              options: optionsVal,
-            },
-            workflow,
-            airflow,
-            sourcedetails,
-            etltarget,
+            cdc,
+            uniquecols,
+            cols,
           },
         },
-      })
-    );
+        processingParameters,
+        configparameters: {
+          spark,
+          watcher: {
+            schedule,
+            options: optionsVal,
+          },
+          workflow,
+          airflow,
+          sourcedetails,
+          etltarget,
+        },
+      },
+    });
+    console.log(output);
+    setData(output);
+  };
+
+  // CLEAR JSON DATA
+
+  const clearData = () => {
+    setJson(false);
   };
 
   // ADD A NEW PROCESSING PARAMETER FOR LINE 10
@@ -223,6 +232,11 @@ const LayoutContextProvider = (props) => {
     setEtlTarget(filteredItems);
   };
 
+  // HANDLE SUBMIT
+  const handleSubmit = () => {
+    console.log('Loading...');
+  };
+
   return (
     <LayoutContext.Provider
       value={{
@@ -232,7 +246,7 @@ const LayoutContextProvider = (props) => {
         setClientName,
         setEmails,
         setLayoutName,
-        handleSubmit,
+        handleVerify,
         processingParameters,
         setProcessingParameters,
         addNewProcessingParameter,
@@ -274,6 +288,10 @@ const LayoutContextProvider = (props) => {
         addNewETlTarget,
         handleChangeETLTarget,
         handleDeleteETLTarget,
+        json,
+        data,
+        clearData,
+        handleSubmit,
       }}
     >
       {props.children}

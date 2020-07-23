@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { LayoutContext } from '../../context/LayoutContext';
+import { Link } from 'react-router-dom';
 
 const Options = () => {
   const { schedule, setSchedule, optionsVal, setOptionsVal } = useContext(
@@ -186,6 +187,18 @@ const Options = () => {
                   />
                 </div>
               </form>
+              <div className=' d-flex justify-content-between '>
+                <Link to='/spark-param'>
+                  <button type='button' className='btn btn-dark my-4'>
+                    Back
+                  </button>
+                </Link>
+                <Link to='/workflow'>
+                  <button type='button' className='btn btn-dark my-4'>
+                    Next
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

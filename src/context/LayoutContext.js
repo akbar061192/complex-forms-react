@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { v4 as uuid } from 'uuid';
+// import axios from 'axios';
 
 const LayoutContext = createContext();
 
@@ -62,61 +63,73 @@ const LayoutContextProvider = (props) => {
   const [etltarget, setEtlTarget] = useState([]);
   const [json, setJson] = useState(false);
   const [data, setData] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleVerify = (event) => {
-    event.preventDefault();
-    setJson(true);
-    const output = JSON.stringify({
-      clientName,
-      emails,
-      layoutName,
-      layoutinfo: {
-        tables: {
-          problem_list: {
-            sourcedetails: {
-              sourcetype,
-              sourceconnection,
-            },
-            cdc,
-            uniquecols,
-            cols: cols.map((p) => {
-              return {
-                maxlength: p.maxlength,
-                datatype: p.datatype,
-                columnname: p.columnname,
-                exceptedvalues: p.exceptedvalues,
-              };
-            }),
+  // SUBMIT DATA
+
+  const output = JSON.stringify({
+    clientName,
+    emails,
+    layoutName,
+    layoutinfo: {
+      tables: {
+        problem_list: {
+          sourcedetails: {
+            sourcetype,
+            sourceconnection,
           },
-        },
-        processingParameters: processingParameters.map((p) => {
-          return { value: p.value, attribute: p.attribute };
-        }),
-        configparameters: {
-          spark,
-          watcher: {
-            schedule,
-            options: optionsVal,
-          },
-          workflow: workflow.map((p) => {
-            return { start: p.start, end: p.end };
-          }),
-          airflow,
-          sourcedetails: sourcedetails.map((p) => {
-            return { value: p.value, attribute: p.attribute };
-          }),
-          etltarget: etltarget.map((p) => {
-            return { value: p.value, attribute: p.attribute };
+          cdc,
+          uniquecols,
+          cols: cols.map((p) => {
+            return {
+              maxlength: p.maxlength,
+              datatype: p.datatype,
+              columnname: p.columnname,
+              exceptedvalues: p.exceptedvalues,
+            };
           }),
         },
       },
-    });
-    console.log(output);
+      processingParameters: processingParameters.map((p) => {
+        return { value: p.value, attribute: p.attribute };
+      }),
+      configparameters: {
+        spark,
+        watcher: {
+          schedule,
+          options: optionsVal,
+        },
+        workflow: workflow.map((p) => {
+          return { start: p.start, end: p.end };
+        }),
+        airflow,
+        sourcedetails: sourcedetails.map((p) => {
+          return { value: p.value, attribute: p.attribute };
+        }),
+        etltarget: etltarget.map((p) => {
+          return { value: p.value, attribute: p.attribute };
+        }),
+      },
+    },
+  });
+
+  // HANDLE SUBMIT
+  const handleSubmit = () => {
+    setJson(false);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  };
+
+  // HANDLE VERIFY
+  const handleVerify = (event) => {
+    event.preventDefault();
+    setJson(true);
     setData(output);
   };
 
   // CLEAR JSON DATA
-
   const clearData = () => {
     setJson(false);
   };
@@ -248,11 +261,6 @@ const LayoutContextProvider = (props) => {
     setEtlTarget(filteredItems);
   };
 
-  // HANDLE SUBMIT
-  const handleSubmit = () => {
-    console.log('Loading...');
-  };
-
   return (
     <LayoutContext.Provider
       value={{
@@ -308,6 +316,7 @@ const LayoutContextProvider = (props) => {
         data,
         clearData,
         handleSubmit,
+        loading,
       }}
     >
       {props.children}

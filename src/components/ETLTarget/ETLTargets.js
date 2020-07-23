@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { LayoutContext } from '../../context/LayoutContext';
 import SingleETLTargert from './SingleETLTargert';
 import { Link } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 
 const ETLTargets = () => {
   const {
@@ -14,6 +15,7 @@ const ETLTargets = () => {
     data,
     handleSubmit,
     clearData,
+    loading,
   } = useContext(LayoutContext);
   return (
     <>
@@ -68,6 +70,7 @@ const ETLTargets = () => {
                 </button>
               )}
             </div>
+            {loading && <Spinner />}
             {json && (
               <textarea
                 disabled

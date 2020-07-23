@@ -59,24 +59,22 @@ const ETLTargets = () => {
                 </button>
               </Link>
               {!json && (
-                <Link to='/form-submit'>
-                  <button
-                    className='btn btn-primary my-4 mx-3 text-center'
-                    type='submit'
-                    onClick={handleVerify}
-                  >
-                    Verify
-                  </button>
-                </Link>
+                <button
+                  className='btn btn-primary my-4 mx-3 text-center'
+                  type='submit'
+                  onClick={handleVerify}
+                >
+                  Verify
+                </button>
               )}
             </div>
             {json && (
               <textarea
                 disabled
+                className='form-control'
+                defaultValue={data}
                 style={{ width: '90%', height: '40vh', textAlign: 'center' }}
-              >
-                {data}
-              </textarea>
+              ></textarea>
             )}
             <div>
               {json && (
